@@ -8,7 +8,7 @@
 - [x] Удалить шаблонные файлы (TutorialInfo, Readme, SampleScene)
 - [x] Структура папок в `Assets/AeroSpace`, assembly definitions
 - [x] Сцены: MainMenu, Workshop, Flight
-- [ ] Тестовая WebGL-сборка, черновая страница на itch.io
+- [x] Тестовая WebGL-сборка, черновая страница на itch.io
 
 Готово, когда: пустая сцена открывается в браузере с itch.io.
 
