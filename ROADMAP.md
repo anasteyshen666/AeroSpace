@@ -5,9 +5,9 @@
 Цель: собрать ракету в мастерской → взлететь → выйти на орбиту → настроить её узлами манёвров → вернуться и приземлиться.
 
 ### Этап 0 — Фундамент
-- [ ] Удалить шаблонные файлы (TutorialInfo, Readme, SampleScene)
-- [ ] Структура папок в `Assets/AeroSpace`, assembly definitions
-- [ ] Сцены: MainMenu, Workshop, Flight
+- [x] Удалить шаблонные файлы (TutorialInfo, Readme, SampleScene)
+- [x] Структура папок в `Assets/AeroSpace`, assembly definitions
+- [x] Сцены: MainMenu, Workshop, Flight
 - [ ] Тестовая WebGL-сборка, черновая страница на itch.io
 
 Готово, когда: пустая сцена открывается в браузере с itch.io.
