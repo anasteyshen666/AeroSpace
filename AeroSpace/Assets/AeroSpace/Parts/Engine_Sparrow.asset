@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254f5688e5a603f43bfa86ea80951342, type: 3}
+  m_Name: Engine_Sparrow
+  m_EditorClassIdentifier: AeroSpace::AeroSpace.Parts.EngineDefinition
+  displayName: Sparrow Engine
+  description: Small, efficient upper-stage engine.
+  category: 2
+  dryMass: 600
+  sections:
+  - bottomRadius: 0.55
+    topRadius: 0.25
+    height: 0.8
+    material: {fileID: 2100000, guid: 05dfff443cb65064f8235a4ee8fc0a26, type: 2}
+  - bottomRadius: 0.6
+    topRadius: 0.625
+    height: 0.4
+    material: {fileID: 2100000, guid: 0b304d13796077146892bea95c4a239d, type: 2}
+  vacuumThrust: 60000
+  vacuumIsp: 320
+  seaLevelIsp: 220
+  gimbalRange: 4
+  flameMaterial: {fileID: 2100000, guid: 6684ecb4570a3904584a1baa105c6900, type: 2}

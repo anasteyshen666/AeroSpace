@@ -1,20 +1,26 @@
+using AeroSpace.Parts;
 using UnityEngine;
 
 namespace AeroSpace.Flight
 {
     public class Part : MonoBehaviour
     {
-        [SerializeField] float dryMass = 500f;
-        [SerializeField] float diameter = 2f;
-        [SerializeField] float length = 2f;
-
         FuelTank tank;
 
-        public float Mass => dryMass + (tank ? tank.Fuel : 0f);
-        public float Diameter => diameter;
-        public float Length => length;
-        public Vector3 CenterOfMass => transform.TransformPoint(0f, length * 0.5f, 0f);
+        public PartDefinition Definition { get; private set; }
+        public int Stage { get; private set; } = -1;
+        public int Segment { get; set; }
 
-        void Awake() => TryGetComponent(out tank);
+        public float Mass => Definition.dryMass + (tank ? tank.Fuel : 0f);
+        public float Diameter => Definition.Diameter;
+        public float Length => Definition.Length;
+        public Vector3 CenterOfMass => transform.TransformPoint(0f, Length * 0.5f, 0f);
+
+        public void Configure(PartDefinition definition, int stage)
+        {
+            Definition = definition;
+            Stage = stage;
+            TryGetComponent(out tank);
+        }
     }
 }

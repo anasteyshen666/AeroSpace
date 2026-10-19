@@ -8,8 +8,7 @@ namespace AeroSpace.Flight
     [DefaultExecutionOrder(50)]
     public class FlightCamera : MonoBehaviour
     {
-        [SerializeField] Vessel target;
-        [SerializeField] float distance = 35f;
+        [SerializeField] float distance = 60f;
         [SerializeField] float minDistance = 5f;
         [SerializeField] float maxDistance = 5_000f;
         [SerializeField] float orbitSensitivity = 0.2f;
@@ -43,6 +42,7 @@ namespace AeroSpace.Flight
             if (Mathf.Abs(scroll) > 0.01f)
                 distance = Mathf.Clamp(distance * (scroll > 0f ? 0.9f : 1.1f), minDistance, maxDistance);
 
+            var target = FlightSession.Instance.ActiveVessel;
             var focus = target.transform.TransformPoint(target.Body.centerOfMass);
             Planet.Instance.Basis(FloatingOrigin.ToWorld(focus), out var up, out var north, out _);
             var rotation = Quaternion.LookRotation((Vector3)north, (Vector3)up) * Quaternion.Euler(pitch, yaw, 0f);

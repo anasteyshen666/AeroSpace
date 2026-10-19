@@ -5,16 +5,21 @@ namespace AeroSpace.Flight
     [RequireComponent(typeof(MeshRenderer))]
     public class EngineFlame : MonoBehaviour
     {
-        [SerializeField] Engine engine;
-        [SerializeField] float maxLength = 8f;
-
+        Engine engine;
+        float maxLength;
         MeshRenderer flameRenderer;
+
+        public void Configure(Engine source, float length)
+        {
+            engine = source;
+            maxLength = length;
+        }
 
         void Awake() => flameRenderer = GetComponent<MeshRenderer>();
 
         void LateUpdate()
         {
-            float power = engine.CurrentThrust / engine.VacuumThrust;
+            float power = engine ? engine.CurrentThrust / engine.VacuumThrust : 0f;
             flameRenderer.enabled = power > 0.01f;
             if (!flameRenderer.enabled)
                 return;

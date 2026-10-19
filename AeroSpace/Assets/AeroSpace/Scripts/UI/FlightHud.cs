@@ -8,8 +8,6 @@ namespace AeroSpace.UI
 {
     public class FlightHud : MonoBehaviour
     {
-        [SerializeField] Vessel vessel;
-        [SerializeField] AttitudeControl attitude;
         [SerializeField] TMP_Text telemetry;
 
         readonly StringBuilder text = new();
@@ -17,6 +15,9 @@ namespace AeroSpace.UI
 
         void Update()
         {
+            var vessel = FlightSession.Instance.ActiveVessel;
+            var attitude = vessel.GetComponent<AttitudeControl>();
+
             text.Clear();
             text.Append("<mspace=0.6em>");
             Line("ALTITUDE", Distance(vessel.Altitude));
@@ -26,14 +27,20 @@ namespace AeroSpace.UI
             Line("THROTTLE", (vessel.Throttle * 100f).ToString("F0", Invariant) + " %");
             Line("THRUST", (vessel.Thrust / 1000f).ToString("F1", Invariant) + " kN");
             Line("TWR", vessel.Twr.ToString("F2", Invariant));
-            float fuel = vessel.FuelCapacity > 0f ? vessel.Fuel / vessel.FuelCapacity : 0f;
-            Line("FUEL", (fuel * 100f).ToString("F1", Invariant) + " %");
+            float fuel = vessel.StageFuelCapacity > 0f ? vessel.StageFuel / vessel.StageFuelCapacity : 0f;
+            Line("STAGE FUEL", (fuel * 100f).ToString("F1", Invariant) + " %");
             Line("MASS", (vessel.Body.mass / 1000f).ToString("F2", Invariant) + " t");
             Line("SAS", attitude.SasEnabled ? "ON" : "OFF");
+            text.Append('\n');
+            Line("STAGE", vessel.NextStage + " / " + vessel.StageCount);
 
-            if (!vessel.EnginesIgnited)
-                text.Append("\n<color=#FFD25A>Press SPACE to ignite</color>");
-            else if (vessel.Flameout)
+            if (vessel.NextStage < vessel.StageCount)
+            {
+                string action = vessel.NextStage == 0 ? "launch" : "next stage";
+                text.Append("</mspace>\n<color=#FFD25A>SPACE: ").Append(action).Append("</color>\n<size=80%>")
+                    .Append(vessel.DescribeStage(vessel.NextStage)).Append("</size>");
+            }
+            if (vessel.Flameout)
                 text.Append("\n<color=#FF6A50>OUT OF FUEL</color>");
 
             telemetry.SetText(text);

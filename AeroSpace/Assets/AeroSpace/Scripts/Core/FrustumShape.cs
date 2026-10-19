@@ -13,6 +13,15 @@ namespace AeroSpace.Core
         Mesh mesh;
         bool dirty;
 
+        public void Configure(float bottom, float top, float shapeHeight, int segmentCount = 24)
+        {
+            bottomRadius = bottom;
+            topRadius = top;
+            height = shapeHeight;
+            segments = segmentCount;
+            Rebuild();
+        }
+
         void OnEnable() => Rebuild();
         void OnValidate() => dirty = true;
 

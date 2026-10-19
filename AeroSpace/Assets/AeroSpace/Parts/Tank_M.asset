@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c3850f468a38947997fce3dbe3843b, type: 3}
+  m_Name: Tank_M
+  m_EditorClassIdentifier: AeroSpace::AeroSpace.Parts.TankDefinition
+  displayName: Fuel Tank M
+  description: Holds 8 t of propellant.
+  category: 1
+  dryMass: 1000
+  sections:
+  - bottomRadius: 1.25
+    topRadius: 1.25
+    height: 5
+    material: {fileID: 2100000, guid: 0b304d13796077146892bea95c4a239d, type: 2}
+  fuelCapacity: 8000

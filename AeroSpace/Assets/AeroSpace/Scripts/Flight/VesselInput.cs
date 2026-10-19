@@ -45,7 +45,7 @@ namespace AeroSpace.Flight
             if (toggleSas.WasPressedThisFrame())
                 attitude.SasEnabled = !attitude.SasEnabled;
             if (stage.WasPressedThisFrame())
-                vessel.IgniteEngines();
+                vessel.ActivateNextStage();
         }
     }
 }

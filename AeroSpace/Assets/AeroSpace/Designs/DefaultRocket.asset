@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64689dea00b6434eab278f204c4a79c, type: 3}
+  m_Name: DefaultRocket
+  m_EditorClassIdentifier: AeroSpace::AeroSpace.Parts.VesselDesignAsset
+  design:
+    name: Default Rocket
+    parts:
+    - part: {fileID: 11400000, guid: e084af2f3fabe6c47b4e3620a39db336, type: 2}
+      stage: 3
+    - part: {fileID: 11400000, guid: 18a6aa3b37a2ef34196156bbc7831633, type: 2}
+      stage: -1
+    - part: {fileID: 11400000, guid: 37fe6c0a29d4a6947b414e1e1acecb28, type: 2}
+      stage: -1
+    - part: {fileID: 11400000, guid: 0eb5a6c8ff6e5bc4c945d0dd6fce5f57, type: 2}
+      stage: 2
+    - part: {fileID: 11400000, guid: f5409f1780002034981acb50978f8b15, type: 2}
+      stage: -1
+    - part: {fileID: 11400000, guid: fac04767fe0f69e47afb41ee1c6a619e, type: 2}
+      stage: 1
+    - part: {fileID: 11400000, guid: 0eb5a6c8ff6e5bc4c945d0dd6fce5f57, type: 2}
+      stage: 1
+    - part: {fileID: 11400000, guid: ecd7e504f9e1ff2469fa4fb1fee0f9bd, type: 2}
+      stage: -1
+    - part: {fileID: 11400000, guid: 7cde23620c914574cbbc951f24f8b738, type: 2}
+      stage: 0

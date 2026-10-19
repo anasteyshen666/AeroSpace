@@ -9,9 +9,9 @@ namespace AeroSpace.Core
     public class FloatingOrigin : MonoBehaviour
     {
         public static Vector3d Offset { get; private set; }
+        public static Transform Focus { get; set; }
         public static event Action<Vector3> Shifted;
 
-        [SerializeField] Transform focus;
         [SerializeField] float threshold = 1000f;
         [SerializeField] LayerMask ignoredLayers;
 
@@ -27,8 +27,8 @@ namespace AeroSpace.Core
 
         void FixedUpdate()
         {
-            if (focus && focus.position.sqrMagnitude > threshold * threshold)
-                Shift(focus.position);
+            if (Focus && Focus.position.sqrMagnitude > threshold * threshold)
+                Shift(Focus.position);
         }
 
         void Shift(Vector3 delta)

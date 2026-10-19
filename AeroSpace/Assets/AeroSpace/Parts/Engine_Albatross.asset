@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254f5688e5a603f43bfa86ea80951342, type: 3}
+  m_Name: Engine_Albatross
+  m_EditorClassIdentifier: AeroSpace::AeroSpace.Parts.EngineDefinition
+  displayName: Albatross Engine
+  description: Heavy first-stage lifter.
+  category: 2
+  dryMass: 4000
+  sections:
+  - bottomRadius: 1.6
+    topRadius: 0.8
+    height: 1.8
+    material: {fileID: 2100000, guid: 05dfff443cb65064f8235a4ee8fc0a26, type: 2}
+  - bottomRadius: 1.7
+    topRadius: 1.875
+    height: 1
+    material: {fileID: 2100000, guid: 0b304d13796077146892bea95c4a239d, type: 2}
+  vacuumThrust: 900000
+  vacuumIsp: 300
+  seaLevelIsp: 280
+  gimbalRange: 3
+  flameMaterial: {fileID: 2100000, guid: 6684ecb4570a3904584a1baa105c6900, type: 2}

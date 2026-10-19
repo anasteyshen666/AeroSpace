@@ -4,8 +4,8 @@ namespace AeroSpace.Flight
 {
     public class ReactionWheel : MonoBehaviour
     {
-        [SerializeField] float torque = 15_000f;
+        public float Torque { get; private set; }
 
-        public float Torque => torque;
+        public void Configure(float torque) => Torque = torque;
     }
 }

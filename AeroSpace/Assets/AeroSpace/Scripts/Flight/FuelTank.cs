@@ -4,16 +4,19 @@ namespace AeroSpace.Flight
 {
     public class FuelTank : MonoBehaviour
     {
-        [SerializeField] float capacity = 4000f;
-        [SerializeField] float fuel = 4000f;
+        public float Capacity { get; private set; }
+        public float Fuel { get; private set; }
 
-        public float Capacity => capacity;
-        public float Fuel => fuel;
+        public void Configure(float capacity)
+        {
+            Capacity = capacity;
+            Fuel = capacity;
+        }
 
         public float Drain(float amount)
         {
-            float taken = Mathf.Min(amount, fuel);
-            fuel -= taken;
+            float taken = Mathf.Min(amount, Fuel);
+            Fuel -= taken;
             return taken;
         }
     }

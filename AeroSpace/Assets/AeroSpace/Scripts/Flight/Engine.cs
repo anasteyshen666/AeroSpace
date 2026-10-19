@@ -6,15 +6,22 @@ namespace AeroSpace.Flight
     {
         public const float G0 = 9.80665f;
 
-        [SerializeField] float vacuumThrust = 150_000f;
-        [SerializeField] float vacuumIsp = 300f;
-        [SerializeField] float seaLevelIsp = 250f;
+        float vacuumThrust, vacuumIsp, seaLevelIsp;
 
         public bool Ignited { get; set; }
         public bool Flameout { get; private set; }
         public float CurrentThrust { get; private set; }
         public float VacuumThrust => vacuumThrust;
+        public float GimbalRange { get; private set; }
         public float MaxFuelFlow => vacuumThrust / (vacuumIsp * G0);
+
+        public void Configure(float thrust, float ispVacuum, float ispSeaLevel, float gimbal)
+        {
+            vacuumThrust = thrust;
+            vacuumIsp = ispVacuum;
+            seaLevelIsp = ispSeaLevel;
+            GimbalRange = gimbal;
+        }
 
         public float Isp(float pressureRatio) => Mathf.Lerp(vacuumIsp, seaLevelIsp, pressureRatio);
         public float MaxThrust(float pressureRatio) => MaxFuelFlow * Isp(pressureRatio) * G0;

@@ -22,8 +22,8 @@ namespace AeroSpace.Flight
 
         void FixedUpdate()
         {
-            float maxTorque = vessel.MaxTorque;
-            if (maxTorque <= 0f)
+            float pitchYaw = vessel.PitchYawTorque, roll = vessel.RollTorque;
+            if (pitchYaw <= 0f && roll <= 0f)
                 return;
 
             var body = vessel.Body;
@@ -54,9 +54,9 @@ namespace AeroSpace.Flight
 
             var localTorque = transform.InverseTransformDirection(ApplyInertia(body, accel));
             localTorque = new Vector3(
-                Mathf.Clamp(localTorque.x, -maxTorque, maxTorque),
-                Mathf.Clamp(localTorque.y, -maxTorque, maxTorque),
-                Mathf.Clamp(localTorque.z, -maxTorque, maxTorque));
+                Mathf.Clamp(localTorque.x, -pitchYaw, pitchYaw),
+                Mathf.Clamp(localTorque.y, -roll, roll),
+                Mathf.Clamp(localTorque.z, -pitchYaw, pitchYaw));
             body.AddTorque(transform.TransformDirection(localTorque));
         }
 

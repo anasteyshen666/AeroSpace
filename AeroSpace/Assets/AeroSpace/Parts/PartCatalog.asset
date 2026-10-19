@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5554e94c37d8180429fdf9c29f447a22, type: 3}
+  m_Name: PartCatalog
+  m_EditorClassIdentifier: AeroSpace::AeroSpace.Parts.PartCatalog
+  parts:
+  - {fileID: 11400000, guid: 18a6aa3b37a2ef34196156bbc7831633, type: 2}
+  - {fileID: 11400000, guid: 37fe6c0a29d4a6947b414e1e1acecb28, type: 2}
+  - {fileID: 11400000, guid: e084af2f3fabe6c47b4e3620a39db336, type: 2}
+  - {fileID: 11400000, guid: b8feb2890b81a4740b1a7f0df3fbb0fc, type: 2}
+  - {fileID: 11400000, guid: 9f6e2acc05633804fbc37791b9c116ee, type: 2}
+  - {fileID: 11400000, guid: f5409f1780002034981acb50978f8b15, type: 2}
+  - {fileID: 11400000, guid: 0eb5a6c8ff6e5bc4c945d0dd6fce5f57, type: 2}
+  - {fileID: 11400000, guid: ecd7e504f9e1ff2469fa4fb1fee0f9bd, type: 2}
+  - {fileID: 11400000, guid: 0c99cc0e8ca17e547a34ee893232e2c0, type: 2}
+  - {fileID: 11400000, guid: 0c3db447f14bd1a46a4aa06d4ff44840, type: 2}
+  - {fileID: 11400000, guid: fac04767fe0f69e47afb41ee1c6a619e, type: 2}
+  - {fileID: 11400000, guid: 7cde23620c914574cbbc951f24f8b738, type: 2}
