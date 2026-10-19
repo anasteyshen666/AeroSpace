@@ -14,9 +14,12 @@ namespace AeroSpace.Flight
         [SerializeField] float orbitSensitivity = 0.2f;
         [SerializeField] float yaw;
         [SerializeField] float pitch = 10f;
+        [SerializeField] float focusSharpness = 3f;
 
         InputActionMap map;
         InputAction orbit, orbitHold, zoom;
+        Vessel tracked;
+        Vector3 localFocus;
 
         void Awake()
         {
@@ -43,7 +46,13 @@ namespace AeroSpace.Flight
                 distance = Mathf.Clamp(distance * (scroll > 0f ? 0.9f : 1.1f), minDistance, maxDistance);
 
             var target = FlightSession.Instance.ActiveVessel;
-            var focus = target.transform.TransformPoint(target.Body.centerOfMass);
+            if (target != tracked)
+            {
+                tracked = target;
+                localFocus = target.Body.centerOfMass;
+            }
+            localFocus = Vector3.Lerp(localFocus, target.Body.centerOfMass, 1f - Mathf.Exp(-focusSharpness * Time.deltaTime));
+            var focus = target.transform.TransformPoint(localFocus);
             Planet.Instance.Basis(FloatingOrigin.ToWorld(focus), out var up, out var north, out _);
             var rotation = Quaternion.LookRotation((Vector3)north, (Vector3)up) * Quaternion.Euler(pitch, yaw, 0f);
             transform.SetPositionAndRotation(focus - rotation * Vector3.forward * distance, rotation);

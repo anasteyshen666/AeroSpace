@@ -23,8 +23,11 @@ namespace AeroSpace.Flight
         Parachute[] parachutes;
         bool[] activeSegments;
         float frontalArea, sideArea, wheelTorque;
+        const float DebrisTumble = 0.15f;
+
         float throttle = 1f;
         bool touching;
+        int pendingStages;
 
         public Rigidbody Body => body;
         public IReadOnlyList<Part> Parts => parts;
@@ -112,7 +115,13 @@ namespace AeroSpace.Flight
 
         public void ActivateNextStage()
         {
-            if (IsDebris || NextStage >= StageCount)
+            if (!IsDebris)
+                pendingStages++;
+        }
+
+        void RunStage()
+        {
+            if (NextStage >= StageCount)
                 return;
             int stage = NextStage++;
             var snapshot = parts;
@@ -146,9 +155,10 @@ namespace AeroSpace.Flight
 
         void Decouple(Part decouplerPart, Decoupler decoupler)
         {
+            transform.SetPositionAndRotation(body.position, body.rotation);
             float splitHeight = LocalHeight(decouplerPart) + 0.001f;
             var debrisObject = new GameObject(name + " Debris");
-            debrisObject.transform.SetPositionAndRotation(transform.position, transform.rotation);
+            debrisObject.transform.SetPositionAndRotation(body.position, body.rotation);
             debrisObject.AddComponent<Rigidbody>();
             foreach (var part in parts)
                 if (LocalHeight(part) <= splitHeight)
@@ -159,12 +169,13 @@ namespace AeroSpace.Flight
             RefreshParts();
 
             debris.body.linearVelocity = body.GetPointVelocity(debris.body.worldCenterOfMass);
-            debris.body.angularVelocity = body.angularVelocity;
+            debris.body.angularVelocity = body.angularVelocity + UnityEngine.Random.insideUnitSphere * DebrisTumble;
             IgnoreCollisions(debris);
 
             var axis = decouplerPart.transform.up;
             body.AddForce(axis * decoupler.EjectionImpulse, ForceMode.Impulse);
             debris.body.AddForce(-axis * decoupler.EjectionImpulse, ForceMode.Impulse);
+            decoupler.Fire();
         }
 
         void MakeDebris()
@@ -202,6 +213,8 @@ namespace AeroSpace.Flight
             var planet = Planet.Instance;
             Landed = touching && body.linearVelocity.sqrMagnitude < 4f;
             touching = false;
+            for (; pendingStages > 0; pendingStages--)
+                RunStage();
             UpdateMass();
 
             var world = WorldPosition;

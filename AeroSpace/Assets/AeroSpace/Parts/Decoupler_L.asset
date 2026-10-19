@@ -21,4 +21,5 @@ MonoBehaviour:
     topRadius: 1.875
     height: 0.4
     material: {fileID: 2100000, guid: 427a4c707bfd8c142acf99bfd323b81c, type: 2}
-  ejectionImpulse: 10000
+  ejectionImpulse: 30000
+  smokeMaterial: {fileID: 2100000, guid: 8c87f253a7b9a1840bd6bcb21b75d0a6, type: 2}
